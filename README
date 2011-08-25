@@ -1,0 +1,43 @@
+
+Microsoft Office Communicator Presence jQuery Plugin
+https://github.com/SocketErr/MSOCPresence-jQuery-Plugin
+
+
+This jQuery plugin adds Microsoft Office Communicator presence awareness to elements.
+
+
+NOTE:
+This plugin utilizes the "Name.NameCtrl" ActiveX control.  It requires that Microsoft
+Office Communicator be installed, can only run in Internet Explorer, and only shows
+presence information when served from a "trusted" site.  The main audience for a
+plugin like this are those developing for an intranet that uses the MS Office suite
+of collaboration tools. 
+
+
+Usage
+
+      $(document).ready(function() {
+        $.addMSOCPresence({displayOOUI: true}); 	
+      });
+
+
+* The following CSS classes will also need to be defined:
+
+- status-online
+- status-offline
+- status-away
+- status-busy
+- status-brb
+- status-phone
+- status-lunch
+
+
+Sample HTML
+
+      <ul>
+        <li class="msocuser" data-msocusername="dburdick@example.com">David Burdick</li>
+        <li class="msocuser" data-msocusername="user1@example.com">User One</li>
+        <li class="msocuser" data-msocusername="user2@example.com">User Two</li>
+      </ul>
+
+      <a class="msocuser" data-msocusername="dburdick@example.com" href="http://david.example.com">David</a>
