@@ -69,11 +69,12 @@
  *
  * @author				David Burdick
  *
- * @version             1.0.0
+ * @version             1.0.1
  *
  * @changelog
  *      + 1.0.0         First release
- *
+ *      + 1.0.1         ActiveXObject was breaking compatibility with non-IE 
+ *                        browsers.  Fixed.
  *
  */
 
@@ -106,7 +107,7 @@ var MSOCConstants =
 
 var MSOCStatusUtil = {
 	
-	nameCtrl: new ActiveXObject('Name.NameCtrl.1'),
+	nameCtrl: window.ActiveXObject ? new ActiveXObject('Name.NameCtrl.1') : null,
 	
 	/**
 	 * Removes all status classes from the given element
@@ -154,7 +155,7 @@ var MSOCStatusUtil = {
 			$.extend(settings, options);
 		}
 	
-		if(MSOCStatusUtil.nameCtrl.PresenceEnabled)
+		if(MSOCStatusUtil.nameCtrl && MSOCStatusUtil.nameCtrl.PresenceEnabled)
 		{
 			MSOCStatusUtil.nameCtrl.OnStatusChange = MSOCStatusUtil.onStatusChange;
 			
