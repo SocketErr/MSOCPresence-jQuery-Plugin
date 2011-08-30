@@ -13,13 +13,17 @@ presence information when served from a "trusted" site.  The main audience for a
 plugin like this are those developing for an intranet that uses the MS Office suite
 of collaboration tools. 
 
+If the user's environment does NOT meet the aforementioned requirements he/she will
+simply not see presence information.  This plugin should not interfere with other
+functionality within the page.
 
 Usage
 
-      $(document).ready(function() {
-        $.addMSOCPresence({displayOOUI: true}); 	
-      });
-
+     This plugin will automatically apply presence information once the document has been
+     fully loaded.
+ 
+     NOTE:  
+       The OOUI widget can be disabled by setting "$.msocpresence.displayOOUI" to false
 
 * The following CSS classes will also need to be defined:
 

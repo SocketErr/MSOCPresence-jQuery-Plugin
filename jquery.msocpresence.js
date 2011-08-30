@@ -4,11 +4,7 @@
  *
  * This jQuery plugin adds Microsoft Office Communicator presence awareness to elements.
  *
- * @option              displayOOUI       Whether or not to display the MSOC OOUI widget
- *
- *
- *
- * @method              addMSOCPresence   Adds presence awareness to all "msocuser" elements 
+ * @option     msocpresence.displayOOUI       Whether or not to display the MSOC OOUI widget
  *
  *
  * @note
@@ -18,11 +14,16 @@
  *      plugin like this are those developing for an intranet that uses the MS Office suite
  *      of collaboration tools. 
  *
- * @usage
+ *      If the user's environment does NOT meet the aforementioned requirements he/she will
+ *      simply not see presence information.  This plugin should not interfere with other
+ *      functionality within the page.
  *
- *      $(document).ready(function() {
- *        $.addMSOCPresence({displayOOUI: true}); 	
- *      });
+ * @usage
+ *      This plugin will automatically apply presence information once the document has been
+ *      fully loaded.
+ *
+ *      NOTE:  
+ *        The OOUI widget can be disabled by setting "$.msocpresence.displayOOUI" to false
  *
  * The following CSS classes will also need to be defined:
  *
@@ -69,12 +70,14 @@
  *
  * @author				David Burdick
  *
- * @version             1.0.1
+ * @version             1.0.2
  *
  * @changelog
  *      + 1.0.0         First release
  *      + 1.0.1         ActiveXObject was breaking compatibility with non-IE 
  *                        browsers.  Fixed.
+ *      + 1.0.2         Modified to automatically apply presence information
+ *                        upon document load.
  *
  */
 
@@ -142,9 +145,12 @@ var MSOCStatusUtil = {
 	}
 };
 
-(function( $ ){
-	$.addMSOCPresence = function(options) {
+(function( $ )
+{
+	$.msocpresence = { displayOOUI: true };
 	
+	var addMSOCPresence = function(options) 
+	{	
 		var settings = {
 			// Whether or not to display the OOUI widget
 			displayOOUI: false
@@ -190,4 +196,11 @@ var MSOCStatusUtil = {
 			});
 		}
 	};
+	
+	$(document).ready(function()
+	{
+		addMSOCPresence({displayOOUI: $.msocpresence.displayOOUI});
+	});
+	
 })( jQuery );
+
